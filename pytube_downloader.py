@@ -7,6 +7,7 @@ import uuid
 CHUNK_SIZE = 1024
 MIME_TYPE = 'video/mp4'
 PREFIX_NAME = 'youtube-tonysan.com_'
+SUBTYPE_NAME_PAIR = ('mp4', '.mp4')
 
 
 def download_available(youtube_link):
@@ -16,7 +17,7 @@ def download_available(youtube_link):
 def get_response_pytube(youtube_link):
     extracted_link = YouTube(youtube_link) \
         .streams \
-        .filter(subtype='mp4') \
+        .filter(subtype=SUBTYPE_NAME_PAIR[0]) \
         .filter(progressive=True) \
         .order_by('resolution') \
         .desc() \
@@ -33,6 +34,6 @@ def get_response_pytube(youtube_link):
                     mimetype=MIME_TYPE,
                     content_type=req.headers['content-type'],
                     direct_passthrough=True)
-    resp.headers['Content-Disposition'] = 'attachment;filename=' + file_name + '.mp4'
+    resp.headers['Content-Disposition'] = 'attachment;filename=' + file_name + SUBTYPE_NAME_PAIR[1]
 
     return resp

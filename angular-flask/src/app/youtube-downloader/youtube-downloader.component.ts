@@ -10,7 +10,7 @@ import {NgForm} from "@angular/forms";
 
 export class YoutubeDownloaderComponent implements OnInit {
 
-  user_name = "Youtube downloader TonySan";
+  user_name = "Youtube TonySan";
 
   constructor(private http: HttpClient) {
   }

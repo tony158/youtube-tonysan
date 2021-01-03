@@ -1,5 +1,10 @@
 <h1> Welcome to youtube downloader!! ttt </h1>
 
 <input [(ngModel)]="user_name" type="text">
-
 <p>{{user_name}}</p>
+<br>
+
+<form #downloadForm="ngForm" (ngSubmit)="onConvert(youtubeLink.value)">
+  <input type="text" #youtubeLink placeholder="youtube link here">
+  <button type="submit">Convert</button>
+</form>

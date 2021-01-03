@@ -8,15 +8,28 @@ app = Flask(__name__)
 
 
 @app.route('/', methods=['GET', 'POST'])
-def download():
-    if request.method == 'GET':
-        return render_template('index.html')
+def index():
+    return render_template('index.html')
+
+
+@app.route('/convert', methods=['POST'])
+def convert():
+    download_link = request.form.get('youtube_link', default='test_default_link')
+    if validate_download_link(download_link):
+        # show preview of the video using Youtube api
+        return get_response(download_link)
     else:
-        download_link = request.form['youtube_link']
-        if validate_download_link(download_link):
-            return get_response(download_link)
-        else:
-            return render_template('index.html')
+        pass
+
+
+# this method accept a normal HTML form submit, see "index_backup.html"
+@app.route('/download', methods=['POST'])
+def download():
+    link = request.form.get('youtube_link', default='test_default_link')
+    if validate_download_link(link):
+        return get_response(link)
+    else:
+        pass
 
 
 def get_response(youtube_link):

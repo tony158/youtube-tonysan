@@ -1,8 +1,8 @@
 <div class="example-container">
-  <form>
+  <form (ngSubmit)="onConvert(youtube_link.value)">
     <mat-form-field class="search-form" appearance="outline">
       <mat-label>youtube download</mat-label>
-      <input matInput placeholder="https://www.youtube.com/blabla..." type="text">
+      <input matInput #youtube_link placeholder="https://www.youtube.com/blabla..." type="text">
     </mat-form-field>
     <button button="submit" mat-raised-button color="primary">Search</button>
   </form>

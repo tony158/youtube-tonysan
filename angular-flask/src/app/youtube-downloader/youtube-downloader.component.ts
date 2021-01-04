@@ -17,8 +17,6 @@ export class YoutubeDownloaderComponent implements OnInit {
   }
 
   onConvert(youtube_link: string) {
-    console.warn(youtube_link);
-
     let formData = new FormData();
     formData.append("youtube_link", youtube_link);
 

@@ -18,6 +18,7 @@ def convert():
     download_link = request.form.get('youtube_link', default='test_default_link')
     if validate_download_link(download_link):
         # show preview of the video using Youtube api, instead of download
+        # TODO
         return get_response(download_link)
     else:
         pass

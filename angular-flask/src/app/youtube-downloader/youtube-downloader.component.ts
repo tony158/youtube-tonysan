@@ -10,6 +10,10 @@ import {FormControl, Validators} from "@angular/forms";
 
 export class YoutubeDownloaderComponent implements OnInit {
 
+  linkFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
   constructor(private http: HttpClient) {
   }
 

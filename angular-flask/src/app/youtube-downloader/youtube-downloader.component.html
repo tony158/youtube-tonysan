@@ -1,9 +1,14 @@
 <div class="example-container">
   <form (ngSubmit)="onConvert(youtube_link.value)">
     <mat-form-field class="search-form" appearance="outline">
-      <mat-label>youtube download</mat-label>
-      <input matInput #youtube_link placeholder="https://www.youtube.com/blabla..." type="text">
+      <mat-label>Youtube download</mat-label>
+      <input matInput #youtube_link [formControl]="linkFormControl" placeholder="https://www.youtube.com/bla..."
+             type="text">
+      <mat-error *ngIf="!linkFormControl.hasError('required')">
+        Please enter a valid youtube link
+      </mat-error>
     </mat-form-field>
+
     <button button="submit" mat-raised-button color="primary">Search</button>
   </form>
 </div>

@@ -1,10 +1,16 @@
-<h1> Welcome to youtube downloader!! </h1>
+<div class="example-container">
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>youtube link</mat-label>
+      <input matInput placeholder="https://www.youtube.com/">
+    </mat-form-field>
 
-<input [(ngModel)]="user_name" type="text">
-<p>{{user_name}}</p>
-<br>
+    <mat-form-field appearance="standard">
+      <button mat-raised-button color="primary" class="example-right-align">Convert
+      </button>
+      <input matInput hidden="hidden">
+    </mat-form-field>
+    
+  </form>
 
-<form #downloadForm="ngForm" (ngSubmit)="onConvert(youtubeLink.value)">
-  <input type="text" #youtubeLink placeholder="youtube link here">
-  <button type="submit">Convert</button>
-</form>
+</div>

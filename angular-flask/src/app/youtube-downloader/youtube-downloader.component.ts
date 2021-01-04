@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {NgForm} from "@angular/forms";
+import {FormControl, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-youtube-downloader',
@@ -9,8 +9,6 @@ import {NgForm} from "@angular/forms";
 })
 
 export class YoutubeDownloaderComponent implements OnInit {
-
-  user_name = "Youtube TonySan";
 
   constructor(private http: HttpClient) {
   }

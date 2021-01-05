@@ -1,7 +1,4 @@
 from __future__ import unicode_literals
-
-import json
-
 from flask import Flask, render_template, request, jsonify
 
 from YoutubeApi import YoutubeApi, convert2_youtube_items

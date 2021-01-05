@@ -2,9 +2,9 @@ from __future__ import unicode_literals
 
 import json
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 
-from YoutubeApi import YoutubeApi
+from YoutubeApi import YoutubeApi, convert2_youtube_items
 from pytube_downloader import download_available, get_response_pytube
 from youtube_dl_downloader import get_response_youtubedl
 from my_util import validate_download_link
@@ -22,10 +22,9 @@ def index():
 def convert():
     download_link = request.form.get('youtube_link', default='test_default_link')
     if validate_download_link(download_link):
-        # show preview of the video using Youtube api, instead of download
-        youtube = YoutubeApi().search(download_link)
-        return json.dumps(youtube)
-
+        search_results = YoutubeApi().search(download_link)
+        items = convert2_youtube_items(search_results['items'])
+        return jsonify(items)
     else:
         pass
 

@@ -1,4 +1,5 @@
 from googleapiclient.discovery import build
+from dataclasses import dataclass
 
 google_youtube_api_key = 'AIzaSyBTiGSTmmPF0yk4zsqnYQPcUh7Hp5TDUig'
 
@@ -10,3 +11,20 @@ class YoutubeApi:
     def search(self, key_word, target_type='video', max_len=20):
         req = self.youtube.search().list(q=key_word, part='snippet', type=target_type, maxResults=max_len)
         return req.execute()
+
+
+def convert2_youtube_items(search_result_items):
+    ans = []
+    for item in search_result_items:
+        youtube_item = YoutubeItem(title=item['snippet']['title'],
+                                   description=item['snippet']['description'],
+                                   thumbnail_url=item['snippet']['thumbnails']['medium']['url'])
+        ans.append(youtube_item)
+    return ans
+
+
+@dataclass
+class YoutubeItem:
+    title: str
+    thumbnail_url: str
+    description: str

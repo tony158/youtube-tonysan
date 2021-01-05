@@ -24,8 +24,9 @@ export class YoutubeDownloaderComponent implements OnInit {
     let formData = new FormData();
     formData.append("youtube_link", youtube_link);
 
-    this.http.post<any>('/download', formData).subscribe(() => {
-      console.warn("got response......");
+    this.http.post<any>('/convert', formData).subscribe((resp) => {
+      console.warn("............got response............");
+      console.warn(resp);
     });
   }
 }

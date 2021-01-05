@@ -1,8 +1,13 @@
 from __future__ import unicode_literals
+
+import json
+
 from flask import Flask, render_template, request
+
+from YoutubeApi import YoutubeApi
 from pytube_downloader import download_available, get_response_pytube
 from youtube_dl_downloader import get_response_youtubedl
-from youtube_util import validate_download_link
+from my_util import validate_download_link
 
 app = Flask(__name__)
 
@@ -18,8 +23,9 @@ def convert():
     download_link = request.form.get('youtube_link', default='test_default_link')
     if validate_download_link(download_link):
         # show preview of the video using Youtube api, instead of download
-        # TODO
-        return get_response(download_link)
+        youtube = YoutubeApi().search(download_link)
+        return json.dumps(youtube)
+
     else:
         pass
 

@@ -16,13 +16,17 @@ class YoutubeApi:
 def convert2_youtube_items(search_result_items):
     ans = []
     for item in search_result_items:
-        youtube_item = YoutubeItem(title=item['snippet']['title'],
-                                   thumbnail_url=item['snippet']['thumbnails']['medium']['url'])
+        youtube_item = YoutubeItem(
+            video_id=item['id']['videoId'],
+            title=item['snippet']['title'],
+            thumbnail_url=item['snippet']['thumbnails']['medium']['url'])
+
         ans.append(youtube_item)
     return ans
 
 
 @dataclass
 class YoutubeItem:
+    video_id: str
     title: str
     thumbnail_url: str

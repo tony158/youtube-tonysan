@@ -17,7 +17,6 @@ def convert2_youtube_items(search_result_items):
     ans = []
     for item in search_result_items:
         youtube_item = YoutubeItem(title=item['snippet']['title'],
-                                   description=item['snippet']['description'],
                                    thumbnail_url=item['snippet']['thumbnails']['medium']['url'])
         ans.append(youtube_item)
     return ans
@@ -27,4 +26,3 @@ def convert2_youtube_items(search_result_items):
 class YoutubeItem:
     title: str
     thumbnail_url: str
-    description: str

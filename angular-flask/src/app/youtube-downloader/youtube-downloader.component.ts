@@ -14,8 +14,8 @@ export class YoutubeDownloaderComponent implements OnInit {
     Validators.required,
   ]);
 
-  search_results = [{
-    'title': 'test1',
+  search_result_list = [{
+    'title': 'test1 test1  test1  test1  test1  test1  test1  test1  test1  test1  test1  test1  test1 ',
     'thumbnail_url': 'https://material.angular.io/assets/img/examples/shiba2.jpg'
   }]
 
@@ -33,7 +33,7 @@ export class YoutubeDownloaderComponent implements OnInit {
       console.warn("............got response............");
       console.warn(resp);
 
-      this.search_results = resp;
+      this.search_result_list = resp;
     });
   }
 }

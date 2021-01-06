@@ -18,12 +18,12 @@
 
   <!-- below is the search result -->
   <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let item of search_results">
+    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let search_result of search_result_list">
       <mat-card class="mat-elevation-z4">
         <mat-card-header>
-          <mat-card-title>{{item.title}}</mat-card-title>
+          <mat-card-title class="text-oneline">{{search_result.title}}</mat-card-title>
         </mat-card-header>
-        <img mat-card-image src={{item.thumbnail_url}}>
+        <img mat-card-image src={{search_result.thumbnail_url}}>
         <mat-card-actions>
           <button mat-button>Download this one</button>
         </mat-card-actions>

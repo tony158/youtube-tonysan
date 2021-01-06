@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {FormControl, Validators} from "@angular/forms";
+import {MatDialog} from "@angular/material/dialog";
+import {DownloadItemComponent} from "../download-item/download-item.component";
 
 @Component({
   selector: 'app-youtube-downloader',
@@ -22,7 +24,7 @@ export class YoutubeDownloaderComponent implements OnInit {
 
   search_in_progress = false;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -39,6 +41,10 @@ export class YoutubeDownloaderComponent implements OnInit {
     });
   }
 
-  openDialog(): void {
+  openDialog(video_id: string): void {
+    console.warn("-------video_id------")
+    console.warn(video_id)
+
+    this.dialog.open(DownloadItemComponent);
   }
 }

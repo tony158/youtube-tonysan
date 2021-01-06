@@ -15,12 +15,17 @@ import {MatCardModule} from "@angular/material/card";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatIconModule} from "@angular/material/icon";
+import {MatDialogModule} from "@angular/material/dialog";
+import {DownloadItemComponent} from './download-item/download-item.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    YoutubeDownloaderComponent
+    YoutubeDownloaderComponent,
+    DownloadItemComponent
   ],
+  entryComponents: [DownloadItemComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -36,6 +41,7 @@ import {MatIconModule} from "@angular/material/icon";
     MatToolbarModule,
     FlexLayoutModule,
     MatIconModule,
+    MatDialogModule,
   ],
   providers: [HttpClientModule,],
   bootstrap: [AppComponent]

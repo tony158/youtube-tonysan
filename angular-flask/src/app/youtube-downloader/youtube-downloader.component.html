@@ -29,8 +29,8 @@
         </mat-card-header>
         <img mat-card-image src={{search_result.thumbnail_url}}>
         <mat-card-actions>
-          <mat-label #video_id hidden="hidden">{{search_result.video_id}}</mat-label>
-          <button mat-button *ngIf="search_result.video_id" (click)="openDialog()">
+          <input type="text" #video_id ng-model="video_id" value="{{search_result.video_id}}" style="display: none;"/>
+          <button mat-button *ngIf="search_result.video_id" (click)="openDialog(video_id.value)">
             <mat-icon>cloud_download</mat-icon>
             Download
           </button>

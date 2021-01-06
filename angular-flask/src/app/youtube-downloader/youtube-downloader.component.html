@@ -29,7 +29,6 @@
         </mat-card-header>
         <img mat-card-image src={{search_result.thumbnail_url}}>
         <mat-card-actions>
-          ``
           <mat-label #video_id hidden="hidden">{{search_result.video_id}}</mat-label>
           <button mat-button *ngIf="search_result.video_id" (click)="openDialog()">
             <mat-icon>cloud_download</mat-icon>

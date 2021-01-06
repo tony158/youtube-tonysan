@@ -38,4 +38,7 @@ export class YoutubeDownloaderComponent implements OnInit {
       this.search_in_progress = false;
     });
   }
+
+  openDialog(): void {
+  }
 }

@@ -15,7 +15,7 @@ export class YoutubeDownloaderComponent implements OnInit {
   ]);
 
   search_result_list = [{
-    'title': 'test1 test1  test1  test1  test1  test1  test1  test1  test1  test1  test1  test1  test1 ',
+    'title': 'test1',
     'thumbnail_url': 'https://material.angular.io/assets/img/examples/shiba2.jpg'
   }]
 

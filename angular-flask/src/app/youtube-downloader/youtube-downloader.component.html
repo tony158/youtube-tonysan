@@ -14,10 +14,13 @@
     </form>
   </div>
 
-  <mat-toolbar color="primary"> Search results</mat-toolbar>
+  <mat-progress-bar mode="buffer" class="progress-bar"></mat-progress-bar>
+  <br>
+  <mat-toolbar color="primary" class="title-bar"> Search results</mat-toolbar>
+  <br>
 
   <!-- below is the search result -->
-  <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
+  <div class="content" fxLayout="row wrap" fxLayoutGap="8px grid">
     <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let search_result of search_result_list">
       <mat-card class="mat-elevation-z4">
         <mat-card-header>

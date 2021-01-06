@@ -36,13 +36,25 @@ input.example-right-align {
   width: 80%;
 }
 
+.progress-bar {
+  margin: 1% 1% 1% 1%;
+  width: 90%;
+}
+
+.title-bar {
+  margin: 1% 1% 1% 1%;
+  width: 90%;
+}
+
 .example-card {
   max-width: 200px;
   /*margin: 2% 1% 2% 4%;*/
 }
 
 .content {
-  padding: 16px;
+  padding: 8px;
+  margin: 1% 1% 1% 1%;
+  width: 90%;
 }
 
 .content > mat-card {

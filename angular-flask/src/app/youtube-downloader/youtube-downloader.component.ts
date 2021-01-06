@@ -41,10 +41,18 @@ export class YoutubeDownloaderComponent implements OnInit {
     });
   }
 
-  openDialog(video_id: string): void {
+  openDialog(video_id: string, video_title: string, img_url: string): void {
     console.warn("-------video_id------")
     console.warn(video_id)
 
-    this.dialog.open(DownloadItemComponent);
+
+    let open_data = {data: {video_id: video_id, video_title: video_title, img_url: img_url}};
+
+    let dialogRef = this.dialog.open(DownloadItemComponent, open_data);
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.warn("----------afterClosed-------------")
+      console.warn(result);
+    })
   }
 }

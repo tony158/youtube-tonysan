@@ -29,7 +29,7 @@
         <img mat-card-image src={{search_result.thumbnail_url}}>
         <mat-card-actions>
           <mat-label hidden="hidden">{{search_result.video_id}}</mat-label>
-          <button mat-button>
+          <button mat-button *ngIf="search_result.video_id">
             <mat-icon>cloud_download</mat-icon>
             Download
           </button>

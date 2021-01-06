@@ -14,7 +14,7 @@
     </form>
   </div>
 
-  <mat-progress-bar mode="buffer" class="progress-bar"></mat-progress-bar>
+  <mat-progress-bar *ngIf="search_in_progress" mode="buffer" class="progress-bar"></mat-progress-bar>
   <br>
   <mat-toolbar color="primary" class="title-bar"> Search results</mat-toolbar>
   <br>

@@ -19,6 +19,8 @@ export class YoutubeDownloaderComponent implements OnInit {
     'thumbnail_url': 'https://material.angular.io/assets/img/examples/shiba2.jpg'
   }]
 
+  search_in_progress = false;
+
   constructor(private http: HttpClient) {
   }
 
@@ -29,11 +31,10 @@ export class YoutubeDownloaderComponent implements OnInit {
     let formData = new FormData();
     formData.append("youtube_link", youtube_link);
 
+    this.search_in_progress = true;
     this.http.post<any>('/convert', formData).subscribe((resp) => {
-      console.warn("............got response............");
-      console.warn(resp);
-
       this.search_result_list = resp;
+      this.search_in_progress = false;
     });
   }
 }

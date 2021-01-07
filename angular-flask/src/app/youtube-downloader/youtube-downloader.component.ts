@@ -12,6 +12,8 @@ import {DownloadItemComponent} from "../download-item/download-item.component";
 
 export class YoutubeDownloaderComponent implements OnInit {
 
+  search_text = "";
+
   linkFormControl = new FormControl('', [
     Validators.required,
   ]);

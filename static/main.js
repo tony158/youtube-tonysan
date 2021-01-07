@@ -430,7 +430,7 @@ function DownloadItemComponent_mat_radio_button_14_Template(rf, ctx) { if (rf & 
 class DownloadItemComponent {
     constructor(data) {
         this.data = data;
-        this.formats = ['Winter', 'Spring', 'Summer', 'Autumn'];
+        this.video_formats = ['Winter', 'Spring', 'Summer', 'Autumn'];
     }
     ngOnInit() {
     }

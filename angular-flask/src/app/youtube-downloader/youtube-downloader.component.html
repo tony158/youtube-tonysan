@@ -39,7 +39,7 @@
           <input type="text" #video_id ng-model="video_id" value="{{search_result.video_id}}" style="display: none;"/>
           <button mat-button *ngIf="search_result.video_id"
                   (click)="openDialog(video_id.value, video_title.innerText, img_url.src)">
-            <mat-icon>cloud_download</mat-icon>
+            <mat-icon>open_in_new</mat-icon>
             Download
           </button>
         </mat-card-actions>

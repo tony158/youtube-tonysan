@@ -1,17 +1,41 @@
+<!--
 <h2 mat-dialog-title>Download the item</h2>
+-->
 
 <mat-dialog-content>
-  <mat-card class="mat-elevation-z0">
-    <mat-card-header>
-      <mat-card-title>{{data.video_title}}</mat-card-title>
-      <mat-card-subtitle>{{data.video_id}}</mat-card-subtitle>
-    </mat-card-header>
-    <img mat-card-image src={{data.img_url}}>
-    <mat-card-actions>
-    </mat-card-actions>
-  </mat-card>
+  <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+
+    <div fxFlex="45%">
+      <mat-card class="mat-elevation-z0">
+        <img mat-card-image src={{data.img_url}}>
+      </mat-card>
+    </div>
+
+    <div fxFlex="45%">
+      <mat-card class="mat-elevation-z0">
+        <mat-card-header>
+          <mat-card-title>{{data.video_title}}</mat-card-title>
+          <!--          <mat-card-subtitle>{{data.video_id}}</mat-card-subtitle>-->
+        </mat-card-header>
+
+        <mat-card-content>
+          <mat-radio-group aria-labelledby="example-radio-group-label" class="example-radio-group"
+                           [(ngModel)]="favoriteSeason">
+            <mat-radio-button class="example-radio-button" *ngFor="let format of formats">
+              {{format}}
+            </mat-radio-button>
+          </mat-radio-group>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+  </div>
 </mat-dialog-content>
 
 <mat-dialog-actions>
-  <button mat-button mat-dialog-close="">Close</button>
+  <button mat-button mat-dialog-close="">
+    <mat-icon>close</mat-icon>
+    Close
+  </button>
 </mat-dialog-actions>
+

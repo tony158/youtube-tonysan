@@ -17,6 +17,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from "@angular/material/dialog";
 import {DownloadItemComponent} from './download-item/download-item.component';
+import {MatRadioModule} from "@angular/material/radio";
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import {DownloadItemComponent} from './download-item/download-item.component';
     FlexLayoutModule,
     MatIconModule,
     MatDialogModule,
+    MatRadioModule,
   ],
   providers: [HttpClientModule,],
   bootstrap: [AppComponent]

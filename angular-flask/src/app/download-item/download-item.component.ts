@@ -8,8 +8,8 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 })
 export class DownloadItemComponent implements OnInit {
 
-  favoriteSeason: string = 'Winter';
-  video_formats: string[] = ['Winter', 'Spring', 'Summer', 'Autumn'];
+  selected_format: string = 'Summer';
+  video_formats: string[] = ['Winter', 'Spring', 'Summer', 'Autumn', '22222', '444444', '55555', '666666', '777777', '888888', '999999'];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
   }

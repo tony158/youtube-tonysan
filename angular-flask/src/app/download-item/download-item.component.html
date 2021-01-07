@@ -15,7 +15,7 @@
       <mat-card class="mat-elevation-z0">
         <mat-card-header>
           <mat-card-title>{{data.video_title}}</mat-card-title>
-          <!--          <mat-card-subtitle>{{data.video_id}}</mat-card-subtitle>-->
+          <input type="text" #video_id ng-model="video_id" value="{{data.video_id}}" style="display: none;"/>
         </mat-card-header>
 
         <mat-card-content>

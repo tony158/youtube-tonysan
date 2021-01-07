@@ -8,10 +8,23 @@ CHUNK_SIZE = 1024
 MIME_TYPE = 'video/mp4'
 PREFIX_NAME = 'youtube-tonysan.com_'
 SUBTYPE_NAME_PAIR = ('mp4', '.mp4')
+SUPPORTED_TYPES = {'mp4', 'webm', 'mp3'}
 
 
 def download_available(youtube_link):
     return YouTube(youtube_link).streams.count() > 0
+
+
+def get_download_types(youtube_link):
+    streams = YouTube(youtube_link).streams
+    ans_formats = []
+
+    for supported in SUPPORTED_TYPES:
+        temp = streams.filter(subtype=supported).order_by('resolution').desc()
+        if temp:
+            ans_formats.append(str(temp.first().mime_type) + " " + str(temp.first().resolution))
+
+    return ans_formats
 
 
 def get_response_pytube(youtube_link):

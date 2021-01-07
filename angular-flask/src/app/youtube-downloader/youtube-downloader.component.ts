@@ -24,7 +24,7 @@ export class YoutubeDownloaderComponent implements OnInit {
     'thumbnail_url': 'https://material.angular.io/assets/img/examples/shiba2.jpg'
   }]
 
-  search_in_progress = false;
+  progress_bar_visible = false;
 
   constructor(private http: HttpClient, private dialog: MatDialog) {
   }
@@ -36,21 +36,17 @@ export class YoutubeDownloaderComponent implements OnInit {
     let formData = new FormData();
     formData.append("youtube_link", youtube_link);
 
-    this.search_in_progress = true;
+    this.progress_bar_visible = true;
     this.http.post<any>('/convert', formData).subscribe((resp) => {
       this.search_result_list = resp;
-      this.search_in_progress = false;
+      this.progress_bar_visible = false;
     });
   }
 
   openDialog(video_id: string, video_title: string, img_url: string): void {
-    console.warn("-------video_id------")
-    console.warn(video_id)
+    let dialogData = {data: {video_id: video_id, video_title: video_title, img_url: img_url}};
 
-
-    let open_data = {data: {video_id: video_id, video_title: video_title, img_url: img_url}};
-
-    let dialogRef = this.dialog.open(DownloadItemComponent, open_data);
+    let dialogRef = this.dialog.open(DownloadItemComponent, dialogData);
 
     dialogRef.afterClosed().subscribe(result => {
       console.warn("----------afterClosed-------------")

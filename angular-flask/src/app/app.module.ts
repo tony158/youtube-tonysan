@@ -18,6 +18,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatDialogModule} from "@angular/material/dialog";
 import {DownloadItemComponent} from './download-item/download-item.component';
 import {MatRadioModule} from "@angular/material/radio";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import {MatRadioModule} from "@angular/material/radio";
     MatIconModule,
     MatDialogModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
   ],
   providers: [HttpClientModule,],
   bootstrap: [AppComponent]

@@ -24,15 +24,17 @@
 
         <mat-card-content>
           <mat-radio-group class="example-radio-group" fxLayout="row wrap">
-            <mat-radio-button class="example-radio-button" *ngFor="let format of video_formats"
-                              [checked]="format === video_formats[1]" [value]="format">
+            <mat-radio-button class="example-radio-button"
+                              *ngFor="let format of video_formats"
+                              [checked]="format === video_formats[0]"
+                              [value]="format">
               {{format}}
             </mat-radio-button>
           </mat-radio-group>
         </mat-card-content>
 
         <mat-card-footer fxLayout="row" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
-          <button mat-raised-button>
+          <button mat-raised-button *ngIf="video_formats.length > 0">
             <mat-icon>cloud_download</mat-icon>
             Download
           </button>

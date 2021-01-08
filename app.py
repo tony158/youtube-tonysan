@@ -11,7 +11,7 @@ import uuid
 
 app = Flask(__name__)
 
-url_dict = {"1": "1"}
+url_dict = {"dummy_key": "dummy_url"}
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -54,6 +54,7 @@ def download():
     # link_key = request.form.get('download_link', default='test_default_link')
     link_key = request.args.get('download_key')
     link = url_dict.get(link_key)
+    url_dict.pop(link_key)
 
     if validate_download_link(link):
         return get_response(link)

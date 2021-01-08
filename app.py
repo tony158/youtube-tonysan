@@ -7,8 +7,11 @@ from youtube_api import YoutubeApi, convert2_youtube_items
 # from pytube_downloader import download_available, get_response_pytube, get_download_types
 from youtube_dl_downloader import get_response_youtubedl
 from my_util import validate_download_link
+import uuid
 
 app = Flask(__name__)
+
+url_dict = {"1": "1"}
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -37,11 +40,20 @@ def download_types():
         return jsonify(types)
 
 
-# this method accept a normal HTML form submit, see "index_backup.html"
-@app.route('/download', methods=['POST'])
-def download():
+@app.route('/generate', methods=['POST'])
+def generate_key():
     link = request.form.get('download_link', default='test_default_link')
-    # link = request.args.get('download_link')
+    generated_id = str(uuid.uuid1())
+    url_dict[generated_id] = link
+    return jsonify(generated_id)
+
+
+# this method accept a normal HTML form submit, see "index_backup.html"
+@app.route('/download', methods=['GET'])
+def download():
+    # link_key = request.form.get('download_link', default='test_default_link')
+    link_key = request.args.get('download_key')
+    link = url_dict.get(link_key)
 
     if validate_download_link(link):
         return get_response(link)

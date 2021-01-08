@@ -10,7 +10,7 @@ import {HttpClient} from "@angular/common/http";
 export class DownloadItemComponent implements OnInit {
 
   spinner_visible = false;
-  video_formats: string[] = [];
+  video_formats = [{'format_name': "", 'format_url': ""}];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient) {
   }

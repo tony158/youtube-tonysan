@@ -12,7 +12,7 @@ SUPPORTED_TYPES = {'mp4', 'webm', 'mp3'}
 
 
 def download_available(youtube_link):
-    return YouTube(youtube_link).streams.count() > 0
+    return True
 
 
 def get_download_types(youtube_link):
@@ -28,21 +28,12 @@ def get_download_types(youtube_link):
 
 
 def get_response_pytube(youtube_link):
-    extracted_link = YouTube(youtube_link) \
-        .streams \
-        .filter(subtype=SUBTYPE_NAME_PAIR[0]) \
-        .filter(progressive=True) \
-        .order_by('resolution') \
-        .desc() \
-        .first() \
-        .url
-
     print("---------------extracted_link--------------")
-    print(extracted_link)
+    print(youtube_link)
     print("-------------------------------------------")
 
     file_name = PREFIX_NAME + str(uuid.uuid1())
-    req = requests.get(extracted_link, stream=True)
+    req = requests.get(youtube_link, stream=True)
     resp = Response(stream_with_context(req.iter_content(chunk_size=CHUNK_SIZE, decode_unicode=False)),
                     mimetype=MIME_TYPE,
                     content_type=req.headers['content-type'],

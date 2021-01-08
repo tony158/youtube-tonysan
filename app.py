@@ -41,6 +41,8 @@ def download_types():
 @app.route('/download', methods=['POST'])
 def download():
     link = request.form.get('download_link', default='test_default_link')
+    # link = request.args.get('download_link')
+
     if validate_download_link(link):
         return get_response(link)
     else:

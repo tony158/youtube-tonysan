@@ -10,8 +10,6 @@ import {HttpClient} from "@angular/common/http";
 export class DownloadItemComponent implements OnInit {
 
   spinner_visible = false;
-
-  selected_format: string = 'Summer';
   video_formats: string[] = [];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient) {
@@ -22,10 +20,10 @@ export class DownloadItemComponent implements OnInit {
   }
 
   getDownloadTypes(video_id: string) {
-    console.warn('-----------getDownloadTypes----------------')
 
     let formData = new FormData();
-    formData.append("youtube_link", "https://www.youtube.com/watch?v=" + video_id);
+    formData.append("youtube_link", video_id.includes("youtube.com") ? video_id
+      : "https://www.youtube.com/watch?v=" + video_id);
 
     this.spinner_visible = true;
     this.http.post<any>('/download_types', formData).subscribe((resp) => {

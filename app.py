@@ -1,8 +1,9 @@
 from __future__ import unicode_literals
 from flask import Flask, render_template, request, jsonify
 
+from pafy_downloader import get_download_types
 from youtube_api import YoutubeApi, convert2_youtube_items
-from pytube_downloader import download_available, get_response_pytube, get_download_types
+# from pytube_downloader import download_available, get_response_pytube, get_download_types
 from youtube_dl_downloader import get_response_youtubedl
 from my_util import validate_download_link
 
@@ -30,6 +31,7 @@ def convert():
 def download_types():
     download_link = request.form.get('youtube_link', default='test_default_link')
     if validate_download_link(download_link):
+        # types = get_download_types(download_link)
         types = get_download_types(download_link)
         return jsonify(types)
 

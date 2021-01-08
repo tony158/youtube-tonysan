@@ -40,7 +40,7 @@ def download_types():
 # this method accept a normal HTML form submit, see "index_backup.html"
 @app.route('/download', methods=['POST'])
 def download():
-    link = request.form.get('youtube_link', default='test_default_link')
+    link = request.form.get('download_link', default='test_default_link')
     if validate_download_link(link):
         return get_response(link)
     else:

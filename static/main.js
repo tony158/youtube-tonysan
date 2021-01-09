@@ -323,8 +323,8 @@ class YoutubeDownloaderComponent {
         let dialogData = { data: { video_id: video_id, video_title: video_title, img_url: img_url } };
         let dialogRef = this.dialog.open(_download_item_download_item_component__WEBPACK_IMPORTED_MODULE_2__["DownloadItemComponent"], dialogData);
         dialogRef.afterClosed().subscribe(result => {
-            console.warn("----------afterClosed-------------");
-            console.warn(result);
+            console.debug("----------afterClosed-------------");
+            console.debug(result);
         });
     }
 }
@@ -458,8 +458,6 @@ class DownloadItemComponent {
         this.getDownloadTypes(this.data.video_id);
     }
     onChange(changeEvent) {
-        console.warn('-----------radio button changed----------------');
-        console.log(changeEvent.value);
         this.selected_format = changeEvent.value;
     }
     getDownloadTypes(video_id) {
@@ -468,17 +466,17 @@ class DownloadItemComponent {
             : "https://www.youtube.com/watch?v=" + video_id);
         this.spinner_visible = true;
         this.http.post('/download_types', formData).subscribe((resp) => {
-            console.warn('-----------download_types returned----------------');
-            console.warn(resp);
-            console.warn('-----------download_types returned----------------');
+            console.debug('-----------download_types returned----------------');
+            console.debug(resp);
+            console.debug('-----------download_types returned----------------');
             this.video_formats = resp;
             this.spinner_visible = false;
             this.selected_format = this.video_formats.length > 0 ? this.video_formats[0].format_url : '';
         });
     }
     onDownloadClicked() {
-        console.warn('-----------onDownloadClicked----------------');
-        console.warn(this.selected_format);
+        console.debug('-----------onDownloadClicked----------------');
+        console.debug(this.selected_format);
         let formData = new FormData();
         formData.append("download_link", this.selected_format);
         this.http.post('/generate', formData).subscribe((resp) => {
@@ -488,8 +486,8 @@ class DownloadItemComponent {
             () => console.info('File downloaded successfully');
     }
     download(download_key) {
-        console.warn('-----------start download with key ----------------');
-        console.warn(download_key);
+        console.debug('-----------start download with key ----------------');
+        console.debug(download_key);
         this.http.get('/download?download_key=' + download_key, { responseType: 'blob' })
             .subscribe((response) => {
             let blob = new Blob([response], { type: 'video/mp4; charset=utf-8' });

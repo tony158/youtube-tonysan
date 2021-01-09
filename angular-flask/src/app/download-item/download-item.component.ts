@@ -13,7 +13,8 @@ export class DownloadItemComponent implements OnInit {
 
   spinner_visible = false;
   selected_format = '';
-  video_formats = [{'format_name': "name1", 'format_url': "1111"}];
+
+  video_formats: { format_name: string; format_url: string; }[] = [];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient) {
   }
@@ -23,8 +24,6 @@ export class DownloadItemComponent implements OnInit {
   }
 
   onChange(changeEvent: MatRadioChange) {
-    console.warn('-----------radio button changed----------------')
-    console.log(changeEvent.value);
     this.selected_format = changeEvent.value;
   }
 
@@ -36,9 +35,9 @@ export class DownloadItemComponent implements OnInit {
 
     this.spinner_visible = true;
     this.http.post<any>('/download_types', formData).subscribe((resp) => {
-      console.warn('-----------download_types returned----------------')
-      console.warn(resp)
-      console.warn('-----------download_types returned----------------')
+      console.debug('-----------download_types returned----------------')
+      console.debug(resp)
+      console.debug('-----------download_types returned----------------')
 
       this.video_formats = resp
       this.spinner_visible = false;
@@ -47,8 +46,8 @@ export class DownloadItemComponent implements OnInit {
   }
 
   onDownloadClicked() {
-    console.warn('-----------onDownloadClicked----------------')
-    console.warn(this.selected_format)
+    console.debug('-----------onDownloadClicked----------------')
+    console.debug(this.selected_format)
 
     let formData = new FormData();
     formData.append("download_link", this.selected_format);
@@ -61,8 +60,8 @@ export class DownloadItemComponent implements OnInit {
   }
 
   download(download_key: string) {
-    console.warn('-----------start download with key ----------------')
-    console.warn(download_key)
+    console.debug('-----------start download with key ----------------')
+    console.debug(download_key)
 
     this.http.get('/download?download_key=' + download_key, {responseType: 'blob'})
       .subscribe((response: any) => {

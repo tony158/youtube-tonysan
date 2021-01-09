@@ -18,11 +18,7 @@ export class YoutubeDownloaderComponent implements OnInit {
     Validators.required,
   ]);
 
-  search_result_list = [{
-    'video_id': '123',
-    'title': '---dummy---',
-    'thumbnail_url': 'https://material.angular.io/assets/img/examples/shiba2.jpg'
-  }]
+  search_result_list: { title: string; thumbnail_url: string; video_id: string }[] = []
 
   progress_bar_visible = false;
 
@@ -49,8 +45,8 @@ export class YoutubeDownloaderComponent implements OnInit {
     let dialogRef = this.dialog.open(DownloadItemComponent, dialogData);
 
     dialogRef.afterClosed().subscribe(result => {
-      console.warn("----------afterClosed-------------")
-      console.warn(result);
+      console.debug("----------afterClosed-------------")
+      console.debug(result);
     })
   }
 }

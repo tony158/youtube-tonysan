@@ -305,11 +305,7 @@ class YoutubeDownloaderComponent {
         this.linkFormControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', [
             _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required,
         ]);
-        this.search_result_list = [{
-                'video_id': '123',
-                'title': '---dummy---',
-                'thumbnail_url': 'https://material.angular.io/assets/img/examples/shiba2.jpg'
-            }];
+        this.search_result_list = [];
         this.progress_bar_visible = false;
     }
     ngOnInit() {
@@ -456,7 +452,7 @@ class DownloadItemComponent {
         this.http = http;
         this.spinner_visible = false;
         this.selected_format = '';
-        this.video_formats = [{ 'format_name': "name1", 'format_url': "1111" }];
+        this.video_formats = [];
     }
     ngOnInit() {
         this.getDownloadTypes(this.data.video_id);

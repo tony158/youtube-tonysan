@@ -22,7 +22,8 @@ def get_download_types(youtube_link):
     for supported in SUPPORTED_TYPES:
         temp = streams.filter(subtype=supported).order_by('resolution').desc()
         if temp:
-            ans_formats.append(str(temp.first().mime_type) + " " + str(temp.first().resolution))
+            ans_formats.append(
+                str(temp.first().mime_type).replace(" ", "") + " " + str(temp.first().resolution)).replace(" ", "")
 
     return ans_formats
 

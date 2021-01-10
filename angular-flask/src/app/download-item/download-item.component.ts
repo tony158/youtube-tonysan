@@ -3,6 +3,7 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {HttpClient} from "@angular/common/http";
 import {MatRadioChange} from "@angular/material/radio";
 import * as fileSaver from 'file-saver';
+import {map, switchMap} from "rxjs/operators";
 
 @Component({
   selector: 'app-download-item',
@@ -52,22 +53,19 @@ export class DownloadItemComponent implements OnInit {
     let formData = new FormData();
     formData.append("download_link", this.selected_format);
 
-    this.http.post<any>('/generate', formData).subscribe((resp) => {
-      this.download(resp.toString())
-    }),
-      (error: any) => console.log(error),
-      () => console.info('File downloaded successfully');
-  }
+    this.http
+      .post<any>('/generate', formData)
+      .pipe(switchMap(respId => this.downloadByKey(respId.toString())))
+      .subscribe((respFileData: any) => {
 
-  download(download_key: string) {
-    console.debug('-----------start download with key ----------------')
-    console.debug(download_key)
-
-    this.http.get('/download?download_key=' + download_key, {responseType: 'blob'})
-      .subscribe((response: any) => {
-        let blob: any = new Blob([response], {type: 'video/mp4; charset=utf-8'});
+        let blob: any = new Blob([respFileData], {type: 'video/mp4; charset=utf-8'});
         fileSaver.saveAs(blob, 'tester.mp4');
       }), (error: any) => console.log('Error downloading the file'),
       () => console.info('File downloaded successfully');
+  }
+
+
+  downloadByKey(download_key: string) {
+    return this.http.get('/download?download_key=' + download_key, {responseType: 'blob'});
   }
 }

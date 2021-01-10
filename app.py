@@ -43,7 +43,7 @@ def download_types():
 @app.route('/generate', methods=['POST'])
 def generate_key():
     link = request.form.get('download_link', default='test_default_link')
-    generated_id = str(uuid.uuid1())
+    generated_id = str(uuid.uuid4())
     url_dict[generated_id] = link
     return jsonify(generated_id)
 

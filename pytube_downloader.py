@@ -33,7 +33,7 @@ def get_response_pytube(youtube_link):
     print(youtube_link)
     print("-------------------------------------------")
 
-    file_name = PREFIX_NAME + str(uuid.uuid1())
+    file_name = PREFIX_NAME + str(uuid.uuid4())
     req = requests.get(youtube_link, stream=True)
     resp = Response(stream_with_context(req.iter_content(chunk_size=CHUNK_SIZE, decode_unicode=False)),
                     mimetype=MIME_TYPE,

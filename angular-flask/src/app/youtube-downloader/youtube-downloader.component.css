@@ -35,6 +35,11 @@ input.example-right-align {
   width: 70%;
 }
 
+.search-button {
+  margin: 1% 1% 1% 1%;
+  width: 8%;
+}
+
 .progress-bar {
   margin: 1% 1% 1% 1%;
   width: 80%;

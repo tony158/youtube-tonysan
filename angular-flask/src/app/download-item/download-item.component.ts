@@ -19,7 +19,8 @@ export class DownloadItemComponent implements OnInit {
 
   video_formats: { format_name: string; format_url: string; }[] = [];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: { video_id: string, video_title: string, img_url: string },
+              private http: HttpClient) {
   }
 
   ngOnInit(): void {

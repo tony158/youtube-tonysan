@@ -3,7 +3,7 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 import {HttpClient} from "@angular/common/http";
 import {MatRadioChange} from "@angular/material/radio";
 import * as fileSaver from 'file-saver';
-import {map, switchMap} from "rxjs/operators";
+import {switchMap} from "rxjs/operators";
 
 const youtubePrefix: string = "https://www.youtube.com/watch?v=";
 
@@ -64,7 +64,6 @@ export class DownloadItemComponent implements OnInit {
       }), (error: any) => console.log('Error downloading the file'),
       () => console.info('File downloaded successfully');
   }
-
 
   downloadByKey(download_key: string) {
     return this.http.get('/download?download_key=' + download_key, {responseType: 'blob'});

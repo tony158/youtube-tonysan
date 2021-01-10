@@ -31,18 +31,18 @@ input.example-right-align {
 }
 
 .search-form {
-  margin: 2% 1% 2% 4%;
+  margin: 1% 1% 1% 1%;
   width: 80%;
 }
 
 .progress-bar {
   margin: 1% 1% 1% 1%;
-  width: 90%;
+  width: 80%;
 }
 
 .title-bar {
   margin: 1% 1% 1% 1%;
-  width: 90%;
+  width: 80%;
 }
 
 .example-card {
@@ -53,7 +53,7 @@ input.example-right-align {
 .content {
   padding: 8px;
   margin: 1% 1% 1% 1%;
-  width: 90%;
+  width: 80%;
 }
 
 .content > mat-card {

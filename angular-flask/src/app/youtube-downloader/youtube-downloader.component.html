@@ -1,50 +1,48 @@
 <div class="example-container">
-  <div class="example-container">
-    <form (ngSubmit)="onConvert(youtube_link.value)">
-      <mat-form-field class="search-form" appearance="outline">
-        <mat-label>Youtube downloader</mat-label>
-        <input matInput #youtube_link [formControl]="linkFormControl"
-               placeholder="Search or paste Youtube link here"
-               type="text" [(ngModel)]="search_text"
-               (click)="youtube_link.select()">
-        <button mat-button *ngIf="search_text" matSuffix mat-icon-button aria-label="Clear" (click)="search_text=''">
-          <mat-icon>close</mat-icon>
-        </button>
-        <mat-error *ngIf="!linkFormControl.hasError('required')">
-          Please enter a valid youtube link
-        </mat-error>
-      </mat-form-field>
-
-      <button button="submit" mat-raised-button color="primary">
-        <mat-icon>search</mat-icon>
-        Search
+  <form (ngSubmit)="onConvert(youtube_link.value)">
+    <mat-form-field class="search-form" appearance="outline">
+      <mat-label>Youtube downloader</mat-label>
+      <input matInput #youtube_link [formControl]="linkFormControl"
+             placeholder="Search or paste Youtube link here"
+             type="text" [(ngModel)]="search_text"
+             (click)="youtube_link.select()">
+      <button mat-button *ngIf="search_text" matSuffix mat-icon-button aria-label="Clear" (click)="search_text=''">
+        <mat-icon>close</mat-icon>
       </button>
-    </form>
-  </div>
+      <mat-error *ngIf="!linkFormControl.hasError('required')">
+        Please enter a valid youtube link
+      </mat-error>
+    </mat-form-field>
 
-  <mat-progress-bar *ngIf="progress_bar_visible" mode="buffer" class="progress-bar"></mat-progress-bar>
-  <br>
-  <mat-toolbar color="primary" class="title-bar"> Search results</mat-toolbar>
-  <br>
-
-  <!-- below is the search result -->
-  <div class="content" fxLayout="row wrap" fxLayoutGap="16px grid">
-    <div fxFlex="25%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let search_result of search_result_list">
-      <mat-card class="mat-elevation-z8">
-        <mat-card-header>
-          <mat-card-title #video_title>{{search_result.title}}</mat-card-title>
-        </mat-card-header>
-        <img mat-card-image #img_url src={{search_result.thumbnail_url}}>
-        <mat-card-actions>
-          <input type="text" #video_id ng-model="video_id" value="{{search_result.video_id}}" style="display: none;"/>
-          <button mat-button *ngIf="search_result.video_id"
-                  (click)="openDialog(video_id.value, video_title.innerText, img_url.src)">
-            <mat-icon>open_in_new</mat-icon>
-            Open
-          </button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-  </div>
-
+    <button button="submit" mat-raised-button color="primary">
+      <mat-icon>search</mat-icon>
+      Search
+    </button>
+  </form>
 </div>
+
+<mat-progress-bar *ngIf="progress_bar_visible" mode="buffer" class="progress-bar"></mat-progress-bar>
+<br>
+<mat-toolbar color="primary" class="title-bar"> Search results</mat-toolbar>
+<br>
+
+<!-- below is the search result -->
+<div class="content" fxLayout="row wrap" fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div fxFlex="22%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let search_result of search_result_list">
+    <mat-card class="mat-elevation-z8">
+      <mat-card-header>
+        <mat-card-title #video_title>{{search_result.title}}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image #img_url src={{search_result.thumbnail_url}}>
+      <mat-card-actions>
+        <input type="text" #video_id ng-model="video_id" value="{{search_result.video_id}}" style="display: none;"/>
+        <button mat-button *ngIf="search_result.video_id"
+                (click)="openDialog(video_id.value, video_title.innerText, img_url.src)">
+          <mat-icon>open_in_new</mat-icon>
+          Open
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+

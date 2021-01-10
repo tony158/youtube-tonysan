@@ -17,7 +17,7 @@ input.example-right-align {
 /**/
 .img {
   width: 100%;
-  margin-bottom: 18%;
+  margin-bottom: 20%;
 }
 
 .container {
@@ -26,7 +26,7 @@ input.example-right-align {
 }
 
 .card-picture {
-  width: 23%;
+  width: 20%;
   margin-bottom: 2%;
 }
 
@@ -47,7 +47,6 @@ input.example-right-align {
 
 .example-card {
   max-width: 200px;
-  /*margin: 2% 1% 2% 4%;*/
 }
 
 .content {

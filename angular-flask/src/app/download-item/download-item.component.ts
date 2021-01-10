@@ -5,6 +5,8 @@ import {MatRadioChange} from "@angular/material/radio";
 import * as fileSaver from 'file-saver';
 import {map, switchMap} from "rxjs/operators";
 
+const youtubePrefix: string = "https://www.youtube.com/watch?v=";
+
 @Component({
   selector: 'app-download-item',
   templateUrl: './download-item.component.html',
@@ -31,8 +33,7 @@ export class DownloadItemComponent implements OnInit {
   getDownloadTypes(video_id: string) {
 
     let formData = new FormData();
-    formData.append("youtube_link", video_id.includes("youtube.com") ? video_id
-      : "https://www.youtube.com/watch?v=" + video_id);
+    formData.append("youtube_link", (video_id.includes("youtube.com") ? video_id : youtubePrefix + video_id));
 
     this.spinner_visible = true;
     this.http.post<any>('/download_types', formData).subscribe((resp) => {

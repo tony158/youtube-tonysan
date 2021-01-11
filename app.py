@@ -14,10 +14,10 @@ app = Flask(__name__)
 url_dict = {"dummy_key": "dummy_url"}
 
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/', methods=['GET'])
+@app.route('/static/', methods=['GET'])
 def index():
     return render_template('index.html')
-    # return render_template('index_backup.html')
 
 
 @app.route('/convert', methods=['POST'])

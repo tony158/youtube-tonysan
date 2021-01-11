@@ -68,6 +68,7 @@ input.example-right-align {
   /*font-weight: bold;*/
   font-size: 140%;
   max-height: 4.8em;
+  height: 4.8em;
   line-height: 1.6em;
 
   display: block; /* or inline-block */

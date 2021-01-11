@@ -14,10 +14,13 @@ const youtubePrefix: string = "https://www.youtube.com/watch?v=";
 })
 export class DownloadItemComponent implements OnInit {
 
-  spinner_visible = false;
-  selected_format = '';
+  spinner_visible: boolean = false;
+  selected_format: string = '';
 
-  video_formats: { format_name: string; format_url: string; }[] = [];
+  video_duration: string = ''
+  video_formats: {
+    format_name: string; format_url: string; video_duration: string
+  }[] = [];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: { video_id: string, video_title: string, img_url: string },
               private http: HttpClient) {
@@ -45,6 +48,7 @@ export class DownloadItemComponent implements OnInit {
       this.video_formats = resp
       this.spinner_visible = false;
       this.selected_format = this.video_formats.length > 0 ? this.video_formats[0].format_url : '';
+      this.video_duration = this.video_formats.length > 0 ? this.video_formats[0].video_duration : '';
     });
   }
 

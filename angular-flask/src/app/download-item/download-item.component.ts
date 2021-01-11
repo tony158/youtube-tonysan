@@ -56,7 +56,7 @@ export class DownloadItemComponent implements OnInit {
     formData.append("download_link", this.selected_format);
 
     this.http
-      .post<any>('/generate', formData)
+      .post<any>('/generate_key', formData)
       .pipe(switchMap(respId => this.downloadByKey(respId.toString())))
       .subscribe((respFileData: any) => {
 

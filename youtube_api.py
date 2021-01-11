@@ -20,8 +20,8 @@ def convert2_youtube_items(search_result_items):
             video_id=item['id']['videoId'],
             title=item['snippet']['title'],
             thumbnail_url=item['snippet']['thumbnails']['medium']['url'])
-
         ans.append(youtube_item)
+
     return ans
 
 

@@ -480,7 +480,7 @@ class DownloadItemComponent {
         let formData = new FormData();
         formData.append("download_link", this.selected_format);
         this.http
-            .post('/generate', formData)
+            .post('/generate_key', formData)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["switchMap"])(respId => this.downloadByKey(respId.toString())))
             .subscribe((respFileData) => {
             let blob = new Blob([respFileData], { type: 'video/mp4; charset=utf-8' });
@@ -489,7 +489,7 @@ class DownloadItemComponent {
             () => console.info('File downloaded successfully');
     }
     downloadByKey(download_key) {
-        return this.http.get('/download?download_key=' + download_key, { responseType: 'blob' });
+        return this.http.get('/download?download_key='.concat(download_key), { responseType: 'blob' });
     }
 }
 DownloadItemComponent.ɵfac = function DownloadItemComponent_Factory(t) { return new (t || DownloadItemComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"])); };

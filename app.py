@@ -35,7 +35,6 @@ def convert():
 def download_types():
     download_link = request.form.get('youtube_link', default='test_default_link')
     if validate_download_link(download_link):
-        # types = get_download_types(download_link)
         types = get_download_types(download_link)
         return jsonify(types)
 
@@ -51,7 +50,6 @@ def generate_key():
 # this method accept a normal HTML form submit, see "index_backup.html"
 @app.route('/download', methods=['GET'])
 def download():
-    # link_key = request.form.get('download_link', default='test_default_link')
     link_key = request.args.get('download_key')
     link = url_dict.get(link_key)
     url_dict.pop(link_key)

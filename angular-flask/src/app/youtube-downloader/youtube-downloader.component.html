@@ -31,7 +31,7 @@
   <div fxFlex="24%" fxFlex.xs="100%" fxFlex.sm="33%" *ngFor="let search_result of search_result_list">
     <mat-card class="mat-elevation-z8">
       <mat-card-header>
-        <mat-card-title #video_title>{{search_result.title}}</mat-card-title>
+        <span class="card-title-text" #video_title>{{search_result.title}}</span>
       </mat-card-header>
       <img mat-card-image #img_url src={{search_result.thumbnail_url}}>
       <mat-card-actions>

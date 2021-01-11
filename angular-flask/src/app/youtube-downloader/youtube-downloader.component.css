@@ -63,3 +63,18 @@ input.example-right-align {
 .content > mat-card {
   width: 200px;
 }
+
+.card-title-text {
+  /*font-weight: bold;*/
+  font-size: 140%;
+  max-height: 4.8em;
+  line-height: 1.6em;
+
+  display: block; /* or inline-block */
+  text-overflow: ellipsis;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+

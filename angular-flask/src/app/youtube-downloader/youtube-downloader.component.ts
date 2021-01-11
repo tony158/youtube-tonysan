@@ -18,7 +18,13 @@ export class YoutubeDownloaderComponent implements OnInit {
     Validators.required,
   ]);
 
-  search_result_list: { title: string; thumbnail_url: string; video_id: string }[] = []
+  search_result_list: { title: string; thumbnail_url: string; video_id: string }[] = [
+    {
+      title: "1231231231231231231231231aaaaaaaaaaaaaaaaaaaaaaaaaaaaa123123123123123123123",
+      video_id: "123123123123123123123123123123123123123123",
+      thumbnail_url: "https://material.angular.io/assets/img/examples/shiba2.jpg"
+    }
+  ]
 
   progress_bar_visible = false;
 

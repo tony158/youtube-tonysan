@@ -13,13 +13,15 @@ def get_download_types(youtube_link):
 
     ans_formats = []
     for temp in streams:
-        temp_format = {'format_name': str(temp.extension).replace(" ", "") + " " + str(temp.notes).replace(" ", ""),
-                       'format_url': temp.url}
+        temp_format = {
+            'format_name': "{} {}".format(str(temp.extension).replace(" ", ""), str(temp.notes).replace(" ", "")),
+            'format_url': temp.url}
         ans_formats.append(temp_format)
 
     for temp in audio_streams:
-        temp_format = {'format_name': str(temp.extension).replace(" ", "") + " " + str(temp.quality).replace(" ", ""),
-                       'format_url': temp.url}
+        temp_format = {
+            'format_name': "{} {}".format(str(temp.extension).replace(" ", ""), str(temp.quality).replace(" ", "")),
+            'format_url': temp.url}
         ans_formats.append(temp_format)
 
     return ans_formats

@@ -67,6 +67,6 @@ export class DownloadItemComponent implements OnInit {
   }
 
   downloadByKey(download_key: string) {
-    return this.http.get('/download?download_key=' + download_key, {responseType: 'blob'});
+    return this.http.get('/download?download_key='.concat(download_key), {responseType: 'blob'});
   }
 }

@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 from flask import Flask, render_template, request, jsonify
 
-from pafy_downloader import get_download_types
+from pafy_downloader import get_download_types, search
 from pytube_downloader import download_available, get_response_pytube
 from youtube_api import YoutubeApi, convert2_youtube_items
 # from pytube_downloader import download_available, get_response_pytube, get_download_types
@@ -24,8 +24,12 @@ def index():
 def convert():
     download_link = request.form.get('youtube_link', default='test_default_link')
     if validate_download_link(download_link):
-        search_results = YoutubeApi().search(download_link)
-        items = convert2_youtube_items(search_results['items'])
+        if 'youtube.com' not in download_link:
+            search_results = YoutubeApi().search(download_link)
+            items = convert2_youtube_items(search_results['items'])
+        else:
+            items = search(download_link)
+
         return jsonify(items)
     else:
         pass

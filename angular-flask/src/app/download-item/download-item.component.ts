@@ -63,6 +63,7 @@ export class DownloadItemComponent implements OnInit {
       .post<any>('/generate_key', formData)
       .pipe(switchMap(respId => this.downloadByKey(respId.toString())))
       .subscribe((respFileData: any) => {
+        console.debug('-----------got download response----------------')
 
         let blob: any = new Blob([respFileData], {type: 'video/mp4; charset=utf-8'});
         fileSaver.saveAs(blob, 'tester.mp4');
@@ -71,6 +72,10 @@ export class DownloadItemComponent implements OnInit {
   }
 
   downloadByKey(download_key: string) {
+    console.debug('-----------downloadByKey----------------')
+    console.debug(download_key)
+    console.debug('-----------downloadByKey----------------')
+
     return this.http.get('/download?download_key='.concat(download_key), {responseType: 'blob'});
   }
 }

@@ -28,16 +28,7 @@ export class YoutubeDownloaderComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // @ViewChild('searchButton') searchButton: ElementRef<HTMLElement> | undefined;
-  //
-  // onEnterPressed() {
-  //   if (this.searchButton) {
-  //     let el: HTMLElement = this.searchButton.nativeElement;
-  //     el.click();
-  //   }
-  // }
-
-  onConvert(youtube_link: string) {
+  onSearchClicked(youtube_link: string) {
     let formData = new FormData();
     formData.append("youtube_link", youtube_link);
 

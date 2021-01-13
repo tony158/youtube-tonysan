@@ -9,7 +9,7 @@ from youtube_dl_downloader import get_response_youtubedl
 from my_util import validate_download_link
 import uuid
 
-app = Flask(__name__)
+application = app = Flask(__name__)
 
 url_dict = {"dummy_key": "dummy_url"}
 

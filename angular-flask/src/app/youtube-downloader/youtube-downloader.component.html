@@ -1,14 +1,14 @@
 <div class="example-container">
-  <form (ngSubmit)="onConvert(youtube_link.value)">
+  <form (ngSubmit)="onSearchClicked(youtube_link.value)">
     <mat-form-field class="search-form" appearance="outline">
       <mat-label>Youtube downloader</mat-label>
       <input matInput #youtube_link [formControl]="linkFormControl"
              placeholder="Search or paste Youtube link here"
              type="text" [(ngModel)]="search_text"
              (click)="youtube_link.select()">
-      <button mat-button *ngIf="search_text" matSuffix mat-icon-button aria-label="Clear" (click)="search_text=''">
-        <mat-icon>close</mat-icon>
-      </button>
+      <!--      <button mat-button *ngIf="search_text" matSuffix mat-icon-button aria-label="Clear" (click)="search_text=''">
+              <mat-icon>close</mat-icon>
+            </button>-->
       <mat-error *ngIf="!linkFormControl.hasError('required')">
         Please enter a valid youtube link
       </mat-error>

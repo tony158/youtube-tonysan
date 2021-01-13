@@ -4,7 +4,7 @@ from pytube import YouTube
 import requests
 import uuid
 
-CHUNK_SIZE = 2048
+CHUNK_SIZE = 1024 * 4
 MIME_TYPE = 'video/mp4'
 PREFIX_NAME = 'youtube-tonysan.com_'
 SUBTYPE_NAME_PAIR = ('mp4', '.mp4')
@@ -31,7 +31,7 @@ def get_download_types(youtube_link):
 def get_response_pytube(youtube_link):
     file_name = f'{PREFIX_NAME}{str(uuid.uuid4())}'
     req = requests.get(youtube_link, stream=True)
-    resp = Response(stream_with_context(req.iter_content(chunk_size=CHUNK_SIZE, decode_unicode=False)),
+    resp = Response(stream_with_context(req.iter_content(chunk_size=CHUNK_SIZE)),
                     mimetype=MIME_TYPE,
                     content_type=req.headers['content-type'],
                     direct_passthrough=True)

@@ -19,6 +19,7 @@ import {MatDialogModule} from "@angular/material/dialog";
 import {DownloadItemComponent} from './download-item/download-item.component';
 import {MatRadioModule} from "@angular/material/radio";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {getSaver, SAVER} from "./saver.provider";
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     MatRadioModule,
     MatProgressSpinnerModule,
   ],
-  providers: [HttpClientModule,],
+  providers: [HttpClientModule, {provide: SAVER, useFactory: getSaver}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

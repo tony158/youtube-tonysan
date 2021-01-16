@@ -4,6 +4,10 @@ import {HttpClient} from "@angular/common/http";
 import {MatRadioChange} from "@angular/material/radio";
 import * as fileSaver from 'file-saver';
 import {switchMap} from "rxjs/operators";
+import {DownloadService} from "../download.service";
+import {Download} from "../download";
+import {Observable} from "rxjs";
+import { startWith } from 'rxjs/operators';
 
 const youtubePrefix: string = "https://www.youtube.com/watch?v=";
 
@@ -22,7 +26,8 @@ export class DownloadItemComponent implements OnInit {
     format_name: string; format_url: string; video_duration: string
   }[] = [];
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: { video_id: string, video_title: string, img_url: string },
+  constructor(private downloads: DownloadService,
+              @Inject(MAT_DIALOG_DATA) public data: { video_id: string, video_title: string, img_url: string },
               private http: HttpClient) {
   }
 
@@ -77,5 +82,11 @@ export class DownloadItemComponent implements OnInit {
     console.debug('-----------downloadByKey----------------')
 
     return this.http.get('/download?download_key='.concat(download_key), {responseType: 'blob'});
+  }
+
+  downloadProgress$: Observable<Download> | undefined
+
+  download({name, url}: { name: string, url: string }) {
+    this.downloadProgress$ = this.downloads.download(url, name)
   }
 }

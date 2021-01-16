@@ -37,6 +37,6 @@ export class DownloadService {
   blob(url: string, filename?: string): Observable<Blob> {
     return this.http.get(url, {
       responseType: 'blob'
-    })
+    });
   }
 }

@@ -359,11 +359,7 @@ class YoutubeDownloaderComponent {
         this.linkFormControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"]('', [
             _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required,
         ]);
-        this.search_result_list = [{
-                title: "123123",
-                thumbnail_url: "https://material.angular.io/assets/img/examples/shiba2.jpg",
-                video_id: "id 123123"
-            }];
+        this.search_result_list = [];
         // search_result_list: { title: string; thumbnail_url: string; video_id: string }[] = [{
         //   title: "123123",
         //   thumbnail_url: "",
@@ -536,7 +532,7 @@ function DownloadItemComponent_mat_spinner_18_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "mat-spinner");
 } }
 function DownloadItemComponent_mat_radio_button_20_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-radio-button", 16);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "mat-radio-button", 15);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -548,7 +544,7 @@ function DownloadItemComponent_mat_radio_button_20_Template(rf, ctx) { if (rf & 
 } }
 function DownloadItemComponent_button_22_Template(rf, ctx) { if (rf & 1) {
     const _r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 17);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 16);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function DownloadItemComponent_button_22_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r7); const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r6.onDownloadClicked(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "mat-icon");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "cloud_download");
@@ -557,15 +553,15 @@ function DownloadItemComponent_button_22_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 } }
 function DownloadItemComponent_mat_progress_bar_23_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "mat-progress-bar", 18);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "mat-progress-bar", 17);
 } if (rf & 2) {
     const download_r8 = ctx.ngIf;
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("mode", download_r8.state == "PENDING" ? "buffer" : "determinate")("value", download_r8.progress);
 } }
 const youtubePrefix = "https://www.youtube.com/watch?v=";
 class DownloadItemComponent {
-    constructor(downloads, data, http) {
-        this.downloads = downloads;
+    constructor(downloadService, data, http) {
+        this.downloadService = downloadService;
         this.data = data;
         this.http = http;
         this.spinner_visible = false;
@@ -596,11 +592,11 @@ class DownloadItemComponent {
         this.download({ fileName: "tester.mp4", url: this.selected_format });
     }
     download({ fileName, url }) {
-        this.downloadProgress$ = this.downloads.download(url, fileName);
+        this.downloadProgress$ = this.downloadService.download(url, fileName);
     }
 }
 DownloadItemComponent.ɵfac = function DownloadItemComponent_Factory(t) { return new (t || DownloadItemComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_download_service__WEBPACK_IMPORTED_MODULE_2__["DownloadService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"])); };
-DownloadItemComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DownloadItemComponent, selectors: [["app-download-item"]], decls: 25, vars: 11, consts: [["mat-icon-button", "", 1, "close-button", 3, "mat-dialog-close"], ["color", "warn", 1, "close-icon"], ["fxLayout", "row", "fxLayout.xs", "column", "fxLayoutWrap", "", "fxLayoutGap", "0.5%", "fxLayoutAlign", "center", 1, "container"], ["fxFlex", "42%"], [1, "mat-elevation-z0"], ["mat-card-image", "", 3, "src"], ["fxFlex", "50%"], [1, "card-title-text"], ["type", "text", "ng-model", "video_id", 2, "display", "none", 3, "value"], ["video_id", ""], [4, "ngIf"], ["fxLayout", "row wrap", 1, "example-radio-group", 3, "change"], ["class", "example-radio-button", 3, "checked", "value", 4, "ngFor", "ngForOf"], ["fxLayout", "row", "fxLayoutWrap", "", "fxLayoutGap", "0.5%", "fxLayoutAlign", "center"], ["mat-raised-button", "", 3, "click", 4, "ngIf"], [3, "mode", "value", 4, "ngIf"], [1, "example-radio-button", 3, "checked", "value"], ["mat-raised-button", "", 3, "click"], [3, "mode", "value"]], template: function DownloadItemComponent_Template(rf, ctx) { if (rf & 1) {
+DownloadItemComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DownloadItemComponent, selectors: [["app-download-item"]], decls: 25, vars: 11, consts: [["mat-icon-button", "", 1, "close-button", 3, "mat-dialog-close"], ["color", "warn", 1, "close-icon"], ["fxLayout", "row", "fxLayout.xs", "column", "fxLayoutWrap", "", "fxLayoutGap", "0.5%", "fxLayoutAlign", "center", 1, "container"], ["fxFlex", "50%"], [1, "mat-elevation-z0"], ["mat-card-image", "", 3, "src"], [1, "card-title-text"], ["type", "text", "ng-model", "video_id", 2, "display", "none", 3, "value"], ["video_id", ""], [4, "ngIf"], ["fxLayout", "row wrap", 1, "example-radio-group", 3, "change"], ["class", "example-radio-button", 3, "checked", "value", 4, "ngFor", "ngForOf"], ["fxLayout", "row", "fxLayoutWrap", "", "fxLayoutGap", "0.5%", "fxLayoutAlign", "center"], ["mat-raised-button", "", 3, "click", 4, "ngIf"], [3, "mode", "value", 4, "ngIf"], [1, "example-radio-button", 3, "checked", "value"], ["mat-raised-button", "", 3, "click"], [3, "mode", "value"]], template: function DownloadItemComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "mat-icon", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "close");
@@ -613,28 +609,28 @@ DownloadItemComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](7, "img", 5);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 3);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "mat-card", 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "mat-card-header");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "span", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "span", 6);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "input", 8, 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](13, "input", 7, 8);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "mat-card-subtitle");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "mat-card-content");
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](18, DownloadItemComponent_mat_spinner_18_Template, 1, 0, "mat-spinner", 10);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "mat-radio-group", 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](18, DownloadItemComponent_mat_spinner_18_Template, 1, 0, "mat-spinner", 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "mat-radio-group", 10);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("change", function DownloadItemComponent_Template_mat_radio_group_change_19_listener($event) { return ctx.onChange($event); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](20, DownloadItemComponent_mat_radio_button_20_Template, 2, 3, "mat-radio-button", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](20, DownloadItemComponent_mat_radio_button_20_Template, 2, 3, "mat-radio-button", 11);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "mat-card-footer", 13);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](22, DownloadItemComponent_button_22_Template, 4, 0, "button", 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "mat-card-footer", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](22, DownloadItemComponent_button_22_Template, 4, 0, "button", 13);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](23, DownloadItemComponent_mat_progress_bar_23_Template, 1, 2, "mat-progress-bar", 15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](23, DownloadItemComponent_mat_progress_bar_23_Template, 1, 2, "mat-progress-bar", 14);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](24, "async");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();

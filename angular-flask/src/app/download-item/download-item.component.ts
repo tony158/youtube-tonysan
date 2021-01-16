@@ -7,7 +7,7 @@ import {switchMap} from "rxjs/operators";
 import {DownloadService} from "../download.service";
 import {Download} from "../download";
 import {Observable} from "rxjs";
-import { startWith } from 'rxjs/operators';
+import {startWith} from 'rxjs/operators';
 
 const youtubePrefix: string = "https://www.youtube.com/watch?v=";
 
@@ -40,16 +40,11 @@ export class DownloadItemComponent implements OnInit {
   }
 
   getDownloadTypes(video_id: string) {
-
     let formData = new FormData();
     formData.append("youtube_link", (video_id.includes("youtube.com") ? video_id : youtubePrefix + video_id));
 
     this.spinner_visible = true;
     this.http.post<any>('/download_types', formData).subscribe((resp) => {
-      console.debug('-----------download_types returned----------------')
-      console.debug(resp)
-      console.debug('-----------download_types returned----------------')
-
       this.video_formats = resp
       this.spinner_visible = false;
       this.selected_format = this.video_formats.length > 0 ? this.video_formats[0].format_url : '';
@@ -61,32 +56,12 @@ export class DownloadItemComponent implements OnInit {
     console.debug('-----------onDownloadClicked----------------')
     console.debug(this.selected_format)
 
-    let formData = new FormData();
-    formData.append("download_link", this.selected_format);
-
-    this.http
-      .post<any>('/generate_key', formData)
-      .pipe(switchMap(respId => this.downloadByKey(respId.toString())))
-      .subscribe((respFileData: any) => {
-        console.debug('-----------got download response----------------')
-
-        let blob: any = new Blob([respFileData], {type: 'video/mp4; charset=utf-8'});
-        fileSaver.saveAs(blob, 'tester.mp4');
-      }), (error: any) => console.log('Error downloading the file'),
-      () => console.info('File downloaded successfully');
-  }
-
-  downloadByKey(download_key: string) {
-    console.debug('-----------downloadByKey----------------')
-    console.debug(download_key)
-    console.debug('-----------downloadByKey----------------')
-
-    return this.http.get('/download?download_key='.concat(download_key), {responseType: 'blob'});
+    this.download({fileName: "tester.mp4", url: this.selected_format})
   }
 
   downloadProgress$: Observable<Download> | undefined
 
-  download({name, url}: { name: string, url: string }) {
-    this.downloadProgress$ = this.downloads.download(url, name)
+  download({fileName, url}: { fileName: string, url: string }) {
+    this.downloadProgress$ = this.downloads.download(url, fileName)
   }
 }

@@ -1,5 +1,4 @@
 import uuid
-
 import pafy
 
 # video.title video.viewcount, video.author, video.length

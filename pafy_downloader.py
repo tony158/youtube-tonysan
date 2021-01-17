@@ -33,25 +33,22 @@ def get_download_types(youtube_link):
 
     ans_formats = []
     for temp_video in video_streams:
-        temp_format = {
-            'format_uuid': str(uuid.uuid4()),
-            'file_name': str(temp_video.filename),
-            'format_extension': str(temp_video.extension).replace(" ", ""),
-            'format_quality': str(temp_video.notes).replace(" ", ""),
-            'format_url': temp_video.url,
-            'video_duration': video_duration
-        }
-        ans_formats.append(temp_format)
+        ans_formats.append(create_format(temp_video, video_duration, True))
 
     for temp_audio in audio_streams:
-        temp_format = {
-            'format_uuid': str(uuid.uuid4()),
-            'file_name': str(temp_audio.filename),
-            'format_extension': str(temp_audio.extension).replace(" ", ""),
-            'format_quality': str(temp_audio.quality).replace(" ", ""),
-            'format_url': temp_audio.url,
-            'video_duration': video_duration
-        }
-        ans_formats.append(temp_format)
+        ans_formats.append(create_format(temp_audio, video_duration, False))
 
     return ans_formats
+
+
+def create_format(video_audio, video_duration, is_video: bool):
+    format_quality = video_audio.notes if is_video else video_audio.quality
+
+    return {
+        'format_uuid': str(uuid.uuid4()),
+        'file_name': str(video_audio.filename),
+        'format_extension': str(video_audio.extension).replace(" ", ""),
+        'format_quality': str(format_quality).replace(" ", ""),
+        'format_url': video_audio.url,
+        'video_duration': video_duration
+    }

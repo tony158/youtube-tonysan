@@ -538,9 +538,9 @@ function DownloadItemComponent_mat_radio_button_20_Template(rf, ctx) { if (rf & 
 } if (rf & 2) {
     const video_format_r5 = ctx.$implicit;
     const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("checked", video_format_r5 === ctx_r2.video_formats[0])("value", video_format_r5.format_url);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("checked", video_format_r5 === ctx_r2.video_formats[0])("value", video_format_r5.format_uuid);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", video_format_r5.format_name, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate2"](" ", video_format_r5.format_extension, " ", video_format_r5.format_quality, " ");
 } }
 function DownloadItemComponent_button_22_Template(rf, ctx) { if (rf & 1) {
     const _r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
@@ -565,34 +565,54 @@ class DownloadItemComponent {
         this.data = data;
         this.http = http;
         this.spinner_visible = false;
-        this.selected_format = '';
         this.video_duration = '';
+        this.selected_format_uuid = '';
         this.video_formats = [];
     }
     ngOnInit() {
         this.getDownloadTypes(this.data.video_id);
     }
     onChange(changeEvent) {
-        this.selected_format = changeEvent.value;
+        this.selected_format_uuid = changeEvent.value;
     }
     getDownloadTypes(video_id) {
         let formData = new FormData();
         formData.append("youtube_link", (video_id.includes("youtube.com") ? video_id : youtubePrefix + video_id));
         this.spinner_visible = true;
-        this.http.post('/download_types', formData).subscribe((resp) => {
-            this.video_formats = resp;
+        this.http.post('/download_types', formData).subscribe((response) => {
+            this.video_formats = response;
             this.spinner_visible = false;
-            this.selected_format = this.video_formats.length > 0 ? this.video_formats[0].format_url : '';
+            this.selected_format_uuid = this.video_formats.length > 0 ? this.video_formats[0].format_uuid : '';
             this.video_duration = this.video_formats.length > 0 ? this.video_formats[0].video_duration : '';
         });
     }
     onDownloadClicked() {
-        console.debug('-----------onDownloadClicked----------------');
-        console.debug(this.selected_format);
-        this.download({ fileName: "tester.mp4", url: this.selected_format });
+        let fileName = this.getDownloadFileName();
+        let downloadURL = this.getDownloadURL();
+        this.download({ fileName: fileName, url: downloadURL });
     }
     download({ fileName, url }) {
         this.downloadProgress$ = this.downloadService.download(url, fileName);
+    }
+    getDownloadFileName() {
+        if (this.video_formats.length > 0) {
+            for (let entry of this.video_formats) {
+                if (entry.format_uuid == this.selected_format_uuid) {
+                    return entry.file_name;
+                }
+            }
+        }
+        return "";
+    }
+    getDownloadURL() {
+        if (this.video_formats.length > 0) {
+            for (let entry of this.video_formats) {
+                if (entry.format_uuid == this.selected_format_uuid) {
+                    return entry.format_url;
+                }
+            }
+        }
+        return "";
     }
 }
 DownloadItemComponent.ɵfac = function DownloadItemComponent_Factory(t) { return new (t || DownloadItemComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_download_service__WEBPACK_IMPORTED_MODULE_2__["DownloadService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"])); };
@@ -624,7 +644,7 @@ DownloadItemComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](18, DownloadItemComponent_mat_spinner_18_Template, 1, 0, "mat-spinner", 9);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "mat-radio-group", 10);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("change", function DownloadItemComponent_Template_mat_radio_group_change_19_listener($event) { return ctx.onChange($event); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](20, DownloadItemComponent_mat_radio_button_20_Template, 2, 3, "mat-radio-button", 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](20, DownloadItemComponent_mat_radio_button_20_Template, 2, 4, "mat-radio-button", 11);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "mat-card-footer", 12);

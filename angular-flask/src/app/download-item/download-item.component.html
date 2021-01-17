@@ -30,8 +30,8 @@
             <mat-radio-button class="example-radio-button"
                               *ngFor="let video_format of video_formats"
                               [checked]="video_format === video_formats[0]"
-                              [value]="video_format.format_url">
-              {{video_format.format_name}}
+                              [value]="video_format.format_uuid">
+              {{video_format.format_extension}} {{video_format.format_quality}}
             </mat-radio-button>
           </mat-radio-group>
         </mat-card-content>

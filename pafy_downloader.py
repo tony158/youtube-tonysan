@@ -1,3 +1,5 @@
+import uuid
+
 import pafy
 
 # video.title video.viewcount, video.author, video.length
@@ -7,7 +9,7 @@ from youtube_api import YoutubeSearchResultItem
 
 def search(youtube_link):
     ans = []
-    
+
     video = pafy.new(youtube_link)
     youtube_item = YoutubeSearchResultItem(
         video_id=video.videoid,
@@ -26,22 +28,30 @@ def get_download_types(youtube_link):
     if video_duration.startswith("00:"):
         video_duration = video_duration[len("00:"):]
 
-    streams = video.streams
+    video_streams = video.streams
     audio_streams = video.audiostreams
 
     ans_formats = []
-    for temp in streams:
+    for temp_video in video_streams:
         temp_format = {
-            'format_name': "{} {}".format(str(temp.extension).replace(" ", ""), str(temp.notes).replace(" ", "")),
-            'format_url': temp.url,
-            'video_duration': video_duration}
+            'format_uuid': str(uuid.uuid4()),
+            'file_name': str(temp_video.filename),
+            'format_extension': str(temp_video.extension).replace(" ", ""),
+            'format_quality': str(temp_video.notes).replace(" ", ""),
+            'format_url': temp_video.url,
+            'video_duration': video_duration
+        }
         ans_formats.append(temp_format)
 
-    for temp in audio_streams:
+    for temp_audio in audio_streams:
         temp_format = {
-            'format_name': "{} {}".format(str(temp.extension).replace(" ", ""), str(temp.quality).replace(" ", "")),
-            'format_url': temp.url,
-            'video_duration': video_duration}
+            'format_uuid': str(uuid.uuid4()),
+            'file_name': str(temp_audio.filename),
+            'format_extension': str(temp_audio.extension).replace(" ", ""),
+            'format_quality': str(temp_audio.quality).replace(" ", ""),
+            'format_url': temp_audio.url,
+            'video_duration': video_duration
+        }
         ans_formats.append(temp_format)
 
     return ans_formats

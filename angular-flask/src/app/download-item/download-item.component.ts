@@ -15,12 +15,20 @@ const youtubePrefix: string = "https://www.youtube.com/watch?v=";
 })
 export class DownloadItemComponent implements OnInit {
 
+  downloadProgress$: Observable<Download> | undefined
+
   spinner_visible: boolean = false;
-  selected_format: string = '';
 
   video_duration: string = ''
+
+  selected_format_uuid: string = '';
   video_formats: {
-    format_name: string; format_url: string; video_duration: string
+    format_uuid: string;
+    file_name: string;
+    format_extension: string;
+    format_quality: string;
+    format_url: string;
+    video_duration: string
   }[] = [];
 
   constructor(private downloadService: DownloadService,
@@ -33,7 +41,7 @@ export class DownloadItemComponent implements OnInit {
   }
 
   onChange(changeEvent: MatRadioChange) {
-    this.selected_format = changeEvent.value;
+    this.selected_format_uuid = changeEvent.value;
   }
 
   getDownloadTypes(video_id: string) {
@@ -41,24 +49,48 @@ export class DownloadItemComponent implements OnInit {
     formData.append("youtube_link", (video_id.includes("youtube.com") ? video_id : youtubePrefix + video_id));
 
     this.spinner_visible = true;
-    this.http.post<any>('/download_types', formData).subscribe((resp) => {
-      this.video_formats = resp
+    this.http.post<any>('/download_types', formData).subscribe((response) => {
+      this.video_formats = response
+
       this.spinner_visible = false;
-      this.selected_format = this.video_formats.length > 0 ? this.video_formats[0].format_url : '';
+      this.selected_format_uuid = this.video_formats.length > 0 ? this.video_formats[0].format_uuid : '';
       this.video_duration = this.video_formats.length > 0 ? this.video_formats[0].video_duration : '';
     });
   }
 
   onDownloadClicked() {
-    console.debug('-----------onDownloadClicked----------------')
-    console.debug(this.selected_format)
+    let fileName = this.getDownloadFileName();
+    let downloadURL = this.getDownloadURL();
 
-    this.download({fileName: "tester.mp4", url: this.selected_format})
+    this.download({fileName: fileName, url: downloadURL});
   }
 
-  downloadProgress$: Observable<Download> | undefined
 
   download({fileName, url}: { fileName: string, url: string }) {
     this.downloadProgress$ = this.downloadService.download(url, fileName)
+  }
+
+  getDownloadFileName() {
+    if (this.video_formats.length > 0) {
+      for (let entry of this.video_formats) {
+        if (entry.format_uuid == this.selected_format_uuid) {
+          return entry.file_name;
+        }
+      }
+    }
+
+    return "";
+  }
+
+  getDownloadURL() {
+    if (this.video_formats.length > 0) {
+      for (let entry of this.video_formats) {
+        if (entry.format_uuid == this.selected_format_uuid) {
+          return entry.format_url;
+        }
+      }
+    }
+
+    return "";
   }
 }

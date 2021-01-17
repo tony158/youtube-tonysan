@@ -1,8 +1,8 @@
 from __future__ import unicode_literals
 from flask import Flask, render_template, request, jsonify
 
-from pafy_downloader import get_download_types, search
-from youtube_api import YoutubeApi, convert2_youtube_items
+from pafy_resolver import get_download_types, search
+from google_youtube_api import YoutubeApi, convert2_youtube_items
 from youtube_dl_downloader import get_response_file
 from download_util import validate_download_link, get_download_response, download_available
 import uuid

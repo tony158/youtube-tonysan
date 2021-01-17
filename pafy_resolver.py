@@ -3,7 +3,7 @@ import pafy
 
 # video.title video.viewcount, video.author, video.length
 # video.duration, video.likes, video.dislikes
-from youtube_api import YoutubeSearchResultItem
+from google_youtube_api import YoutubeSearchResultItem
 
 
 def search(youtube_link):

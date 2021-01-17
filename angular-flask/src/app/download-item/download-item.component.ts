@@ -46,7 +46,7 @@ export class DownloadItemComponent implements OnInit {
 
   getDownloadTypes(video_id: string) {
     let formData = new FormData();
-    formData.append("youtube_link", (video_id.includes("youtube.com") ? video_id : youtubePrefix + video_id));
+    formData.append("youtube_link", (video_id.includes("youtube.com") ? video_id : `${youtubePrefix}${video_id}`));
 
     this.spinner_visible = true;
     this.http.post<any>('/download_types', formData).subscribe((response) => {

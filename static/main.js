@@ -373,7 +373,7 @@ class YoutubeDownloaderComponent {
         let formData = new FormData();
         formData.append("youtube_link", youtube_link);
         this.progress_bar_visible = true;
-        this.http.post('/convert', formData).subscribe((resp) => {
+        this.http.post('/search', formData).subscribe((resp) => {
             this.search_result_list = resp;
             this.progress_bar_visible = false;
         });
@@ -577,7 +577,7 @@ class DownloadItemComponent {
     }
     getDownloadTypes(video_id) {
         let formData = new FormData();
-        formData.append("youtube_link", (video_id.includes("youtube.com") ? video_id : youtubePrefix + video_id));
+        formData.append("youtube_link", (video_id.includes("youtube.com") ? video_id : `${youtubePrefix}${video_id}`));
         this.spinner_visible = true;
         this.http.post('/download_types', formData).subscribe((response) => {
             this.video_formats = response;

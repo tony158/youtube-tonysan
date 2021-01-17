@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 from flask import Flask, render_template, request, jsonify
-
 from pafy_resolver import get_download_types, search
 from google_youtube_api import YoutubeApi, convert2_youtube_items
 from youtube_dl_downloader import get_response_file
@@ -18,8 +17,8 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/convert', methods=['POST'])
-def convert():
+@app.route('/search', methods=['POST'])
+def search():
     download_link = request.form.get('youtube_link', default='test_default_link')
     if validate_download_link(download_link):
         if 'youtube.com' not in download_link:

@@ -39,7 +39,7 @@ export class YoutubeDownloaderComponent implements OnInit {
     formData.append("youtube_link", youtube_link);
 
     this.progress_bar_visible = true;
-    this.http.post<any>('/convert', formData).subscribe((resp) => {
+    this.http.post<any>('/search', formData).subscribe((resp) => {
       this.search_result_list = resp;
       this.progress_bar_visible = false;
     });

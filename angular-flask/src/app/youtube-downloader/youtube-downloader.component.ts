@@ -53,6 +53,6 @@ export class YoutubeDownloaderComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.debug("----------afterClosed-------------")
       console.debug(result);
-    })
+    });
   }
 }

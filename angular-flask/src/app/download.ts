@@ -4,8 +4,8 @@ import {
   HttpProgressEvent,
   HttpResponse
 } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { distinctUntilChanged, scan, map, tap } from "rxjs/operators";
+import {Observable} from "rxjs";
+import {distinctUntilChanged, scan, map, tap} from "rxjs/operators";
 
 function isHttpResponse<T>(event: HttpEvent<T>): event is HttpResponse<T> {
   return event.type === HttpEventType.Response;
@@ -33,6 +33,7 @@ export function download(
     source.pipe(
       scan(
         (download: Download, event): Download => {
+          //TODO  use console to print "download" and "event"
           if (isHttpProgressEvent(event)) {
             return {
               progress: event.total
@@ -54,7 +55,7 @@ export function download(
           }
           return download;
         },
-        { state: "PENDING", progress: 0, content: null }
+        {state: "PENDING", progress: 0, content: null}
       ),
       distinctUntilChanged((a, b) => a.state === b.state
         && a.progress === b.progress

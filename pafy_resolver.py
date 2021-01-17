@@ -45,7 +45,7 @@ def create_format(video_audio, video_duration, is_video: bool):
 
     return {
         'format_uuid': str(uuid.uuid4()),
-        'file_name': str(video_audio.filename),
+        'file_name': str(video_audio.filename).replace(" ", ""),
         'format_extension': str(video_audio.extension).replace(" ", ""),
         'format_quality': str(format_quality).replace(" ", ""),
         'format_url': video_audio.url,

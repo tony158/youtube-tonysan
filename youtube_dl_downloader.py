@@ -2,7 +2,8 @@ import youtube_dl
 from flask import send_file
 
 
-def get_response_youtubedl(youtube_link):
+# download file to server(with youtube_dl lib) and then send to client
+def get_response_file(youtube_link):
     ydl_opts = {'format': 'bestaudio/best',
                 'postprocessors': [{
                     'key': 'FFmpegExtractAudio',

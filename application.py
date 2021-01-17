@@ -2,11 +2,9 @@ from __future__ import unicode_literals
 from flask import Flask, render_template, request, jsonify
 
 from pafy_downloader import get_download_types, search
-from pytube_downloader import download_available, get_response_pytube
 from youtube_api import YoutubeApi, convert2_youtube_items
-# from pytube_downloader import download_available, get_response_pytube, get_download_types
-from youtube_dl_downloader import get_response_youtubedl
-from my_util import validate_download_link
+from youtube_dl_downloader import get_response_file
+from download_util import validate_download_link, get_download_response, download_available
 import uuid
 
 application = app = Flask(__name__)
@@ -51,24 +49,19 @@ def generate_key():
     return jsonify(generated_id)
 
 
-# this method accept a normal HTML form submit, see "index_backup.html"
 @app.route('/download', methods=['GET'])
 def download():
     link_key = request.args.get('download_key')
-    link = url_dict.get(link_key)
-    url_dict.pop(link_key)
+    download_link = url_dict.get(link_key)
+    url_dict.pop(link_key, None)
 
-    if validate_download_link(link):
-        return get_response(link)
+    if validate_download_link(download_link):
+        if download_available(download_link):
+            return get_download_response(download_link)
+        else:
+            return get_response_file(download_link)
     else:
         pass
-
-
-def get_response(youtube_link):
-    if download_available(youtube_link):
-        return get_response_pytube(youtube_link)
-    else:
-        return get_response_youtubedl(youtube_link)
 
 
 # Press the green button in the gutter to run the script.

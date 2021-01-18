@@ -19,7 +19,7 @@ export class DownloadItemComponent implements OnInit {
 
   spinner_visible: boolean = false;
 
-  video_duration: string = ''
+  video_duration: string = '';
 
   selected_format_uuid: string = '';
   video_formats: {
@@ -50,7 +50,7 @@ export class DownloadItemComponent implements OnInit {
 
     this.spinner_visible = true;
     this.http.post<any>('/download_types', formData).subscribe((response) => {
-      this.video_formats = response
+      this.video_formats = response;
 
       this.spinner_visible = false;
       this.selected_format_uuid = this.video_formats.length > 0 ? this.video_formats[0].format_uuid : '';

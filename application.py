@@ -50,8 +50,8 @@ def generate_key():
 
 @app.route('/download', methods=['GET'])
 def download():
-    link_key = request.args.get('download_key')
-    download_link = url_dict.get(link_key)
+    link_key = request.args.get('download_key', default=None)
+    download_link = url_dict.get(link_key, default=None)
     url_dict.pop(link_key, None)
 
     if validate_download_link(download_link):

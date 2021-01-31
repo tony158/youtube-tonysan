@@ -246,7 +246,7 @@ class DownloadService {
             responseType: 'blob'
         };
         // @ts-ignore
-        return this.http.get('/download?download_key='.concat(download_key), option).pipe(Object(_download__WEBPACK_IMPORTED_MODULE_1__["download"])(blob => this.save(blob, filename)));
+        return this.http.get('/download_by_key?download_key='.concat(download_key), option).pipe(Object(_download__WEBPACK_IMPORTED_MODULE_1__["download"])(blob => this.save(blob, filename)));
     }
     blob(url, filename) {
         return this.http.get(url, {
@@ -464,6 +464,7 @@ function isHttpProgressEvent(event) {
 }
 function download(saver) {
     return (source) => source.pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_1__["scan"])((download, event) => {
+        //TODO  use console to print "download" and "event"
         if (isHttpProgressEvent(event)) {
             return {
                 progress: event.total

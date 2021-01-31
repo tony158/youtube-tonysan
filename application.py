@@ -48,8 +48,8 @@ def generate_key():
     return jsonify(generated_id)
 
 
-@app.route('/download', methods=['GET'])
-def download():
+@app.route('/download_by_key', methods=['GET'])
+def download_by_key():
     link_key = request.args.get('download_key', default=None)
     download_link = url_dict.get(link_key)
     url_dict.pop(link_key, None)

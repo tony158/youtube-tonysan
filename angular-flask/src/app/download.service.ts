@@ -31,7 +31,7 @@ export class DownloadService {
     };
 
     // @ts-ignore
-    return this.http.get('/download?download_key='.concat(download_key), option).pipe(download(blob => this.save(blob, filename)));
+    return this.http.get('/download_by_key?download_key='.concat(download_key), option).pipe(download(blob => this.save(blob, filename)));
   }
 
   blob(url: string, filename?: string): Observable<Blob> {

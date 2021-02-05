@@ -22,6 +22,7 @@ export class DownloadItemComponent implements OnInit {
   video_duration: string = '';
 
   selected_format_uuid: string = '';
+
   video_formats: {
     format_uuid: string;
     file_name: string;
@@ -65,9 +66,8 @@ export class DownloadItemComponent implements OnInit {
     this.download({fileName: fileName, url: downloadURL});
   }
 
-
   download({fileName, url}: { fileName: string, url: string }) {
-    this.downloadProgress$ = this.downloadService.download(url, fileName)
+    this.downloadProgress$ = this.downloadService.download(url, fileName);
   }
 
   getDownloadFileName() {

@@ -557,7 +557,7 @@ function DownloadItemComponent_mat_progress_bar_23_Template(rf, ctx) { if (rf & 
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](0, "mat-progress-bar", 17);
 } if (rf & 2) {
     const download_r8 = ctx.ngIf;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("mode", download_r8.state == "PENDING" ? "buffer" : "determinate")("value", download_r8.progress);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("mode", download_r8.state == "PENDING" || download_r8.state == "IN_PROGRESS" ? "indeterminate" : "determinate");
 } }
 const youtubePrefix = "https://www.youtube.com/watch?v=";
 class DownloadItemComponent {
@@ -617,7 +617,7 @@ class DownloadItemComponent {
     }
 }
 DownloadItemComponent.ɵfac = function DownloadItemComponent_Factory(t) { return new (t || DownloadItemComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_download_service__WEBPACK_IMPORTED_MODULE_2__["DownloadService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__["MAT_DIALOG_DATA"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"])); };
-DownloadItemComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DownloadItemComponent, selectors: [["app-download-item"]], decls: 25, vars: 11, consts: [["mat-icon-button", "", 1, "close-button", 3, "mat-dialog-close"], ["color", "warn", 1, "close-icon"], ["fxLayout", "row", "fxLayout.xs", "column", "fxLayoutWrap", "", "fxLayoutGap", "0.5%", "fxLayoutAlign", "center", 1, "container"], ["fxFlex", "50%"], [1, "mat-elevation-z0"], ["mat-card-image", "", 3, "src"], [1, "card-title-text"], ["type", "text", "ng-model", "video_id", 2, "display", "none", 3, "value"], ["video_id", ""], [4, "ngIf"], ["fxLayout", "row wrap", 1, "example-radio-group", 3, "change"], ["class", "example-radio-button", 3, "checked", "value", 4, "ngFor", "ngForOf"], ["fxLayout", "row", "fxLayoutWrap", "", "fxLayoutGap", "0.5%", "fxLayoutAlign", "center"], ["mat-raised-button", "", 3, "click", 4, "ngIf"], [3, "mode", "value", 4, "ngIf"], [1, "example-radio-button", 3, "checked", "value"], ["mat-raised-button", "", 3, "click"], [3, "mode", "value"]], template: function DownloadItemComponent_Template(rf, ctx) { if (rf & 1) {
+DownloadItemComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: DownloadItemComponent, selectors: [["app-download-item"]], decls: 25, vars: 11, consts: [["mat-icon-button", "", 1, "close-button", 3, "mat-dialog-close"], ["color", "warn", 1, "close-icon"], ["fxLayout", "row", "fxLayout.xs", "column", "fxLayoutWrap", "", "fxLayoutGap", "0.5%", "fxLayoutAlign", "center", 1, "container"], ["fxFlex", "50%"], [1, "mat-elevation-z0"], ["mat-card-image", "", 3, "src"], [1, "card-title-text"], ["type", "text", "ng-model", "video_id", 2, "display", "none", 3, "value"], ["video_id", ""], [4, "ngIf"], ["fxLayout", "row wrap", 1, "example-radio-group", 3, "change"], ["class", "example-radio-button", 3, "checked", "value", 4, "ngFor", "ngForOf"], ["fxLayout", "row", "fxLayoutWrap", "", "fxLayoutGap", "0.5%", "fxLayoutAlign", "center"], ["mat-raised-button", "", 3, "click", 4, "ngIf"], [3, "mode", 4, "ngIf"], [1, "example-radio-button", 3, "checked", "value"], ["mat-raised-button", "", 3, "click"], [3, "mode"]], template: function DownloadItemComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "mat-icon", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "close");
@@ -651,7 +651,7 @@ DownloadItemComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵde
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "mat-card-footer", 12);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](22, DownloadItemComponent_button_22_Template, 4, 0, "button", 13);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](23, DownloadItemComponent_mat_progress_bar_23_Template, 1, 2, "mat-progress-bar", 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](23, DownloadItemComponent_mat_progress_bar_23_Template, 1, 1, "mat-progress-bar", 14);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](24, "async");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
